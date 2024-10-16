@@ -13,7 +13,7 @@ jobs:
     name: Build and publish Enmity for iOS
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4.2.1
         with:
           ref: 'main'
           submodules: true
@@ -24,14 +24,14 @@ jobs:
           echo "heads=`git ls-remote https://github.com/theos/theos | head -n 1 | cut -f 1`-`git ls-remote https://github.com/theos/sdks | head -n 1 | cut -f 1`" >> $GITHUB_OUTPUT
 
       - name: Use cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4.1.1
         with:
           path: |
             ${{ github.workspace }}/theos
           key: ${{ runner.os }}-${{ steps.verify-cache.outputs.heads }}
 
       - name: Prepare Theos
-        uses: Randomblock1/theos-action@v1
+        uses: Randomblock1/theos-action@v1.4
 
       - name: Prepare Azule
         run : |
